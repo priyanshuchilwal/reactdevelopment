@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: whitesmoke;
+        position: absolute;
+        text-align: center;
+      }
+      #root {
+        background-color: #d3d3d3;
+        position: relative;
+        top: 30%;
+        left: 50%;
+        transform: translateY(-50%);
+        transform: translateX(-50%);
+        text-align: center;
+        width: 200px;
+        height: 75px;
+        border-radius: 10px;
+      }
+      header {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script>
+      function App() {
+        const [time, setTime] = React.useState(() =>
+          new Date().toLocaleTimeString()
+        );
+
+        React.useEffect(() => {
+          setInterval(() => {
+            setTime(new Date().toLocaleTimeString());
+          }, 1000);
+        }, []);
+
+        return React.createElement("header", null, `Currently it's ${time}`);
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(React.createElement(App));
+    </script>
+  </body>
+</html>
